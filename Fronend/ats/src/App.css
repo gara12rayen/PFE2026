@@ -1,0 +1,360 @@
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  --primary:        #2563eb;
+  --primary-hover:  #1d4ed8;
+  --primary-light:  rgba(37, 99, 235, 0.08);
+  --danger:         #dc2626;
+  --danger-hover:   #b91c1c;
+  --success:        #16a34a;
+  --success-hover:  #15803d;
+  --neutral:        #6b7280;
+  --neutral-hover:  #4b5563;
+
+  --bg:             #f1f5f9;
+  --surface:        #ffffff;
+  --surface-alt:    #f8fafc;
+  --border:         #e2e8f0;
+  --border-focus:   #2563eb;
+
+  --text-primary:   #0f172a;
+  --text-secondary: #475569;
+  --text-muted:     #94a3b8;
+
+  --header-bg:      #0f172a;
+  --header-accent:  #2563eb;
+
+  --radius-sm:      6px;
+  --radius-md:      10px;
+  --radius-lg:      14px;
+  --radius-xl:      20px;
+
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.07), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg:  0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.05);
+
+  --transition: 0.2s ease;
+
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+  padding: 40px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.app-header {
+  background: var(--header-bg);
+  padding: 0 32px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid var(--header-accent);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-header a,
+.app-header nav a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), color var(--transition);
+}
+
+.app-header a:hover,
+.app-header nav a:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.app-header a.active,
+.app-header nav a.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.app-footer {
+  background: var(--header-bg);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 16px;
+  font-size: 13px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ============================================
+   CARD
+   ============================================ */
+.card {
+  background: var(--surface);
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.card p strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Status badge inside cards */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.03em;
+}
+
+.badge-open    { background: #dcfce7; color: #15803d; }
+.badge-closed  { background: #fee2e2; color: #b91c1c; }
+.badge-draft   { background: #fef9c3; color: #92400e; }
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 1px 4px rgba(37,99,235,0.18);
+  white-space: nowrap;
+}
+
+button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Danger button */
+button[style*="#dc2626"],
+button.btn-danger {
+  background: var(--danger) !important;
+  box-shadow: 0 1px 4px rgba(220,38,38,0.18);
+}
+button[style*="#dc2626"]:hover,
+button.btn-danger:hover {
+  background: var(--danger-hover) !important;
+  box-shadow: 0 4px 12px rgba(220,38,38,0.25);
+}
+
+/* Success button */
+button[style*="#16a34a"],
+button.btn-success {
+  background: var(--success) !important;
+  box-shadow: 0 1px 4px rgba(22,163,74,0.18);
+}
+button[style*="#16a34a"]:hover,
+button.btn-success:hover {
+  background: var(--success-hover) !important;
+  box-shadow: 0 4px 12px rgba(22,163,74,0.25);
+}
+
+/* Neutral/cancel button */
+button[style*="#6b7280"],
+button.btn-neutral {
+  background: var(--neutral) !important;
+  box-shadow: none;
+}
+button[style*="#6b7280"]:hover,
+button.btn-neutral:hover {
+  background: var(--neutral-hover) !important;
+}
+
+/* ============================================
+   FORMS
+   ============================================ */
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px 13px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border);
+  background: var(--surface-alt);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--border-focus);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* ============================================
+   MODAL OVERLAY (used by edit modal)
+   ============================================ */
+/* Overlay */
+div[style*="position: fixed"] {
+  backdrop-filter: blur(4px);
+}
+
+/* ============================================
+   PAGE HEADINGS
+   ============================================ */
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+h2::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* ============================================
+   UTILITY
+   ============================================ */
+.flex        { display: flex; }
+.items-center{ align-items: center; }
+.gap-2       { gap: 8px; }
+.gap-3       { gap: 12px; }
+.mt-2        { margin-top: 8px; }
+.mt-4        { margin-top: 16px; }
+.text-sm     { font-size: 13px; }
+.text-muted  { color: var(--text-muted); }
+
+/* ============================================
+   SCROLLBAR (webkit)
+   ============================================ */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: #cbd5e1; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .page-content {
+    padding: 24px 16px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .app-header {
+    padding: 0 16px;
+  }
+}
